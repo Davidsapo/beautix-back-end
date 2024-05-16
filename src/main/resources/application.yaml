@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: beautix-back-end
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/beautix?currentSchema=core
+    username: postgres
+    password: changeme
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: true
+  profiles:
+    active: local
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    com:
+      auth: DEBUG
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){cyan} %highlight(${LOG_LEVEL_PATTERN:-%6p}) %clr(:){faint} %green(%X{requestId}) %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
